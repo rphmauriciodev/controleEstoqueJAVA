@@ -22,7 +22,7 @@ public class AlugarProduto extends JanelaBase {
 	
 	public AlugarProduto() {
 		setTitle("Editar Produtos");
-		setBounds(100, 100, 360, 428);
+		setBounds(100, 100, 360, 510);
 		getContentPane().setLayout(null);
 
 		panelToggleButtons = new JPanel();
@@ -30,7 +30,7 @@ public class AlugarProduto extends JanelaBase {
 		panelToggleButtons.setBackground(Color.DARK_GRAY);
 		
 		JButton btnSalvar = new JButton("Alugar");
-		btnSalvar.setBounds(235, 286, 89, 23);
+		btnSalvar.setBounds(235, 368, 89, 23);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!", "Informação",
@@ -46,7 +46,7 @@ public class AlugarProduto extends JanelaBase {
 				dispose();
 			}
 		});
-		btnSair.setBounds(235, 351, 89, 23);
+		btnSair.setBounds(235, 433, 89, 23);
 		getContentPane().add(btnSair);
 		
 		JComboBox comboBox = new JComboBox();
@@ -85,6 +85,16 @@ public class AlugarProduto extends JanelaBase {
 		lblSelecioneOCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSelecioneOCliente.setBounds(10, 192, 197, 40);
 		getContentPane().add(lblSelecioneOCliente);
+		
+		JLabel lblSelecioneOFuncionrio = new JLabel("Selecione o funcionário responsável");
+		lblSelecioneOFuncionrio.setForeground(Color.WHITE);
+		lblSelecioneOFuncionrio.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSelecioneOFuncionrio.setBounds(10, 276, 314, 40);
+		getContentPane().add(lblSelecioneOFuncionrio);
+		
+		JComboBox comboBox_2_1 = new JComboBox();
+		comboBox_2_1.setBounds(10, 327, 314, 22);
+		getContentPane().add(comboBox_2_1);
 
 		List<String> categorias = new ArrayList<>();
 		categorias.add("Categoria A");

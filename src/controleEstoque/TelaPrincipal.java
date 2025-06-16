@@ -55,13 +55,13 @@ public class TelaPrincipal extends JanelaBase {
 		contentPane.add(btnEditarCategorias);
 
 		JLabel lblRelatorio = new JLabel("RELATÓRIO FINAL");
-		lblRelatorio.setBounds(30, 574, 242, 31);
+		lblRelatorio.setBounds(30, 684, 242, 31);
 		getContentPane().add(lblRelatorio);
 		lblRelatorio.setForeground(Color.WHITE);
 		lblRelatorio.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JButton btnAbrirRelatrio = new JButton("Abrir relatório");
-		btnAbrirRelatrio.setBounds(30, 630, 220, 75);
+		btnAbrirRelatrio.setBounds(30, 740, 220, 75);
 		getContentPane().add(btnAbrirRelatrio);
 
 		JLabel lblProdutos = new JLabel("PRODUTOS");
@@ -79,7 +79,7 @@ public class TelaPrincipal extends JanelaBase {
 		getContentPane().add(btnListarProdutos);
 
 		JButton btnAlugarProduto = new JButton("Alugar Produto");
-		btnAlugarProduto.setBounds(540, 488, 220, 75);
+		btnAlugarProduto.setBounds(30, 598, 220, 75);
 		getContentPane().add(btnAlugarProduto);
 
 		JLabel lblClientes = new JLabel("CLIENTES");
@@ -127,6 +127,10 @@ public class TelaPrincipal extends JanelaBase {
 		JButton btnEditarFuncionario = new JButton("Editar Funcionario");
 		btnEditarFuncionario.setBounds(287, 360, 220, 75);
 		getContentPane().add(btnEditarFuncionario);
+		
+		JButton btnDevolverProduto = new JButton("Devolver Produto");
+		btnDevolverProduto.setBounds(287, 600, 220, 75);
+		getContentPane().add(btnDevolverProduto);
 
 		btnEditarFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

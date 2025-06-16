@@ -13,7 +13,7 @@ public class ProdutoDAO implements IbaseDAO<Produto> {
 
 	public List<Produto> listarTodos() {
 		List<Produto> produtos = new ArrayList<>();
-		String sql = "SELECT id, nome, precoUnit, categoriaId, quantidade, isDesativado FROM Produtos";
+		String sql = "SELECT id, nome, precoUnit, categoriaId, quantidade, isDesativado, isAlugado FROM public.\"VW_Produtos\"";
 
 		try (Connection conn = Conexao.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(sql);
@@ -21,7 +21,7 @@ public class ProdutoDAO implements IbaseDAO<Produto> {
 
 			while (rs.next()) {
 				Produto produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getDouble("precoUnit"),
-						rs.getInt("categoriaId"), rs.getInt("quantidade"), rs.getBoolean("isDesativado"));
+						rs.getInt("categoriaId"), rs.getInt("quantidade"), rs.getBoolean("isDesativado"), rs.getBoolean("isAlugado"));
 				produtos.add(produto);
 			}
 
@@ -33,7 +33,7 @@ public class ProdutoDAO implements IbaseDAO<Produto> {
 	}
 
 	public void inserir(Produto produto) {
-		String sql = "INSERT INTO Produtos (nome, precoUnit, categoriaId, quantidade, isDesativado) VALUES (?)";
+		String sql = "INSERT INTO Produtos (nome, precoUnit, categoriaId, quantidade, isDesativado) VALUES (?,?,?,?,?)";
 
 		try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
