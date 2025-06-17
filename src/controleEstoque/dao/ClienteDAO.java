@@ -13,7 +13,7 @@ public class ClienteDAO implements IbaseDAO<Cliente>{
 
     public List<Cliente> listarTodos() {
         List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT id, nome FROM Clientes";
+        String sql = "SELECT id, nome FROM Clientes WHERE COALESCE(isDesativado, false) = false";
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class ClienteDAO implements IbaseDAO<Cliente>{
     }
     
     public void remover(int id) {
-        String sql = "DELETE FROM Clientes WHERE id = ?";
+    	String sql = "UPDATE Clientes SET isDesativado = true WHERE id = ?";
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

@@ -13,7 +13,6 @@ import utils.DeletarTipo;
 import java.awt.*;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
@@ -81,8 +80,24 @@ public class EditarProduto extends JanelaBase {
 		getContentPane().add(lblMudarCategoria);
 
 		JButton btnDeletar = new JButton("Deletar");
+		btnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (produtoSelecionado == null) {
+					JOptionPane.showMessageDialog(null, "Selecione um produto primeiro!", "Erro",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if (tipoAcao == DeletarTipo.Deletar) {
+					produtoDAO.remover(produtoSelecionado.getId());
+				} else {
+					produtoSelecionado.setDesativado(!produtoSelecionado.isDesativado());
+					produtoDAO.atualizar(produtoSelecionado);
+				}
+				dispose();
+			}
+		});
 		btnDeletar.setForeground(Color.WHITE);
-		btnDeletar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnDeletar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		btnDeletar.setBackground(Color.RED);
 		btnDeletar.setBounds(637, 341, 89, 23);
 		getContentPane().add(btnDeletar);
@@ -183,10 +198,9 @@ public class EditarProduto extends JanelaBase {
 						tipoAcao = DeletarTipo.Reativar;
 					} else if (produtoSelecionado.isAlugado()) {
 						btnDeletar.setText("Desativar");
-						btnDeletar.setBackground(Color.YELLOW);
+						btnDeletar.setBackground(Color.ORANGE);
 						tipoAcao = DeletarTipo.Desativar;
-					}else
-					{
+					} else {
 						btnDeletar.setText("Deletar");
 						btnDeletar.setBackground(Color.RED);
 						tipoAcao = DeletarTipo.Deletar;

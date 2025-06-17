@@ -13,7 +13,7 @@ public class FuncionarioDAO implements IbaseDAO<Funcionario>{
 
     public List<Funcionario> listarTodos() {
         List<Funcionario> funcionarios = new ArrayList<>();
-        String sql = "SELECT id, nome FROM Funcionarios";
+        String sql = "SELECT id, nome FROM Funcionarios WHERE COALESCE(isDesativado, false) = false";
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class FuncionarioDAO implements IbaseDAO<Funcionario>{
     }
     
     public void remover(int id) {
-        String sql = "DELETE FROM Funcionarios WHERE id = ?";
+        String sql = "UPDATE Funcionarios SET isDesativado = true WHERE id = ?";
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

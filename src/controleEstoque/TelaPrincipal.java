@@ -10,6 +10,7 @@ import controleEstoque.JanelaFuncionarios.CriarFuncionario;
 import controleEstoque.JanelaFuncionarios.EditarFuncionario;
 import controleEstoque.JanelaProdutos.AlugarProduto;
 import controleEstoque.JanelaProdutos.CriarProduto;
+import controleEstoque.JanelaProdutos.DevolverProduto;
 import controleEstoque.JanelaProdutos.EditarProduto;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,7 @@ public class TelaPrincipal extends JanelaBase {
 
 	public TelaPrincipal() {
 		super();
-		setBounds(100, 100, 800, 900);
+		setBounds(100, 100, 555, 900);
 		JLabel lblCategorias = new JLabel("CATEGORIAS");
 		lblCategorias.setForeground(Color.WHITE);
 		lblCategorias.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -107,13 +108,13 @@ public class TelaPrincipal extends JanelaBase {
 			}
 		});
 		getContentPane().add(btnEditarCliente);
-		
+
 		JLabel lblFuncionarios = new JLabel("FUNCIONARIOS");
 		lblFuncionarios.setForeground(Color.WHITE);
 		lblFuncionarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblFuncionarios.setBounds(30, 305, 149, 31);
 		getContentPane().add(lblFuncionarios);
-		
+
 		JButton btnCriarFuncionario = new JButton("Criar funcionario");
 		btnCriarFuncionario.setBounds(30, 360, 220, 75);
 		btnCriarFuncionario.addActionListener(new ActionListener() {
@@ -123,13 +124,19 @@ public class TelaPrincipal extends JanelaBase {
 			}
 		});
 		getContentPane().add(btnCriarFuncionario);
-		
+
 		JButton btnEditarFuncionario = new JButton("Editar Funcionario");
 		btnEditarFuncionario.setBounds(287, 360, 220, 75);
 		getContentPane().add(btnEditarFuncionario);
-		
+
 		JButton btnDevolverProduto = new JButton("Devolver Produto");
 		btnDevolverProduto.setBounds(287, 600, 220, 75);
+		btnDevolverProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DevolverProduto dProduto = new DevolverProduto();
+				dProduto.setVisible(true);
+			}
+		});
 		getContentPane().add(btnDevolverProduto);
 
 		btnEditarFuncionario.addActionListener(new ActionListener() {
@@ -138,7 +145,7 @@ public class TelaPrincipal extends JanelaBase {
 				lFuncionario.setVisible(true);
 			}
 		});
-		
+
 		btnListarProdutos.addActionListener(e -> {
 			EditarProduto lProdutos = new EditarProduto();
 			lProdutos.setVisible(true);
@@ -150,6 +157,11 @@ public class TelaPrincipal extends JanelaBase {
 		btnAlugarProduto.addActionListener(e -> {
 			AlugarProduto aProduto = new AlugarProduto();
 			aProduto.setVisible(true);
+		});
+		
+		btnAbrirRelatrio.addActionListener(e -> {
+			RelatorioFinal relatorio = new RelatorioFinal();
+			relatorio.setVisible(true);
 		});
 	}
 }

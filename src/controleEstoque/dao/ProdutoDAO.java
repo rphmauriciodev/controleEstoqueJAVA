@@ -21,10 +21,33 @@ public class ProdutoDAO implements IbaseDAO<Produto> {
 
 			while (rs.next()) {
 				Produto produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getDouble("precoUnit"),
-						rs.getInt("categoriaId"), rs.getInt("quantidade"), rs.getBoolean("isDesativado"), rs.getBoolean("isAlugado"));
+						rs.getInt("categoriaId"), rs.getInt("quantidade"), rs.getBoolean("isDesativado"),
+						rs.getBoolean("isAlugado"));
 				produtos.add(produto);
 			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return produtos;
+	}
+
+	public List<Produto> listarPorCategoria(int categoriaId) {
+		List<Produto> produtos = new ArrayList<>();
+		String sql = "SELECT id, nome, precoUnit, categoriaId, quantidade, isDesativado, isAlugado FROM FN_SelecionaProdutosPor(?)";
+
+		try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			stmt.setInt(1, categoriaId);
+			try (ResultSet rs = stmt.executeQuery()) {
+				while (rs.next()) {
+					Produto produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getDouble("precoUnit"),
+							rs.getInt("categoriaId"), rs.getInt("quantidade"), rs.getBoolean("isDesativado"),
+							rs.getBoolean("isAlugado"));
+					produtos.add(produto);
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +91,7 @@ public class ProdutoDAO implements IbaseDAO<Produto> {
 	}
 
 	public void remover(int id) {
-		String sql = "DELETE FROM Produtos WHERE id = ?";
+		String sql = "CALL sp_excluir_produto_com_alugados (?)";
 
 		try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 

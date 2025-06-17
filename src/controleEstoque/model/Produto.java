@@ -60,5 +60,9 @@ public class Produto {
 	public void setAlugado(boolean isAlugado) {
 		this.isAlugado = isAlugado;
 	}
-
+	
+	@Override
+	public String toString() {
+		return nome;
+	}
 }

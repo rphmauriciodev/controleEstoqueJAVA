@@ -13,7 +13,7 @@ public class CategoriaDAO implements IbaseDAO<Categoria>{
 
     public List<Categoria> listarTodos() {
         List<Categoria> categorias = new ArrayList<>();
-        String sql = "SELECT id, nome FROM Categorias";
+        String sql = "SELECT id, nome FROM Categorias WHERE COALESCE(isDesativado, false) = false";
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class CategoriaDAO implements IbaseDAO<Categoria>{
     }
     
     public void remover(int id) {
-        String sql = "DELETE FROM Categorias WHERE id = ?";
+    	String sql = "UPDATE Categorias SET isDesativado = true WHERE id = ?";
 
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
