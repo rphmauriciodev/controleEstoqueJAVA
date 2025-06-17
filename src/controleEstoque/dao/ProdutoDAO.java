@@ -35,7 +35,7 @@ public class ProdutoDAO implements IbaseDAO<Produto> {
 
 	public List<Produto> listarPorCategoria(int categoriaId) {
 		List<Produto> produtos = new ArrayList<>();
-		String sql = "SELECT id, nome, precoUnit, categoriaId, quantidade, isDesativado, isAlugado FROM FN_SelecionaProdutosPor(?)";
+		String sql = "SELECT id, nome, precoUnit, categoriaId, quantidade, isDesativado, isAlugado FROM FN_SelecionaProdutosPor(?) WHERE COALESCE(isDesativado,false) = false";
 
 		try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
