@@ -31,7 +31,7 @@ public class DevolverProduto extends JanelaBase {
 
 		List<VW_Alugado> alugados = alugadoDAO.listarPor(clientes.get(0).getId(), false);
 
-		setTitle("Editar Produtos");
+		setTitle("Devolver Produto");
 		setBounds(100, 100, 360, 342);
 		getContentPane().setLayout(null);
 

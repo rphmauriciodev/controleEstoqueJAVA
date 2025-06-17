@@ -43,7 +43,7 @@ public class AlugarProduto extends JanelaBase {
 		List<Funcionario> funcionarios = funcionarioDAO.listarTodos();
 		List<Produto> produtos = produtoDAO.listarPorCategoria(categorias.get(0).getId());
 		
-		setTitle("Editar Produtos");
+		setTitle("Alugar Produto");
 		setBounds(100, 100, 360, 510);
 		getContentPane().setLayout(null);
 
